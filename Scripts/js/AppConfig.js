@@ -304,31 +304,31 @@ document.appConfig = {
         universalAudioNoLiguisticContent: 544,
     },
     VMSEnvUrls: {
-        'https://aliasextsvcdev.viacom.com/alias/dev1': {
+        'http://aliasextsvcdev.viacom.com/alias/dev1': {
             tagWidgetEnv: 'vmsDev'
         },
-        'https://aliasextsvcdev.viacom.com/alias/dev2': {
+        'http://aliasextsvcdev.viacom.com/alias/dev2': {
             tagWidgetEnv: 'vmsDev2'
         },
-        'https://aliasextsvcdev.viacom.com/alias/neptune': {
+        'http://aliasextsvcdev.viacom.com/alias/neptune': {
             tagWidgetEnv: 'vmsNeptune'
         },
-        'https://aliasextsvcdev.viacom.com/alias/mercury': {
+        'http://aliasextsvcdev.viacom.com/alias/mercury': {
             tagWidgetEnv: 'vmsMercury'
         },
-        'https://aliasextsvcqa.viacom.com/alias/qa': {
+        'http://aliasextsvcqa.viacom.com/alias/qa': {
             tagWidgetEnv: 'vmsQa'
         },
-        'https://aliasextsvcqa.viacom.com/alias/venus': {
+        'http://aliasextsvcqa.viacom.com/alias/venus': {
             tagWidgetEnv: 'vmsVenus'
         },
-        'https://aliasextsvcqa.viacom.com/alias/saturn': {
+        'http://aliasextsvcqa.viacom.com/alias/saturn': {
             tagWidgetEnv: 'vmsSaturn'
         },
-        'https://aliasextsvcstg.viacom.com': {
+        'http://aliasextsvcstg.viacom.com': {
             tagWidgetEnv: 'vmsStaging'
         },
-        'https://aliasextsvc.viacom.com': {
+        'http://aliasextsvc.viacom.com': {
             tagWidgetEnv: 'vmsProd'
         }
     },
