@@ -21,17 +21,17 @@ document.appConfig = {
     renditionIdToDisplayLanguages: 103,
     uploadDirectory: '~//Uploads//Attachments',
     externalSites: {
-        onboarding: 'https://onboarding.viacom.com/',
-        relay: 'https://relay.viacom.com/',
-        vkfScreeners: 'https://vkfscreeners.viacom.com/',
-        mtvScreeners: 'https://mtvscreeners.viacom.com',
-        cmtScreeners: 'https://cmtscreeners.viacom.com',
-        nickScreeners: 'https://nickscreeners.viacom.com',
-        cmtScreeners: 'https://cmtscreeners.viacom.com/',
-        onboardingRegistrations: 'https://vmnprod.service-now.com/viaess/catalog.do?v=1&uri=com.glideapp.servicecatalog_cat_item_view.do?v%3D1%26sysparm_id%3D583e951585df4600dca2777989c49212%26sysparm_link_parent%3D7270e02e0d3e51401ad0e1208a9181bd%26sysparm_catalog%3De0d08b13c3330100c8b837659bba8fb4&sysparm_document_key=sc_cat_item%2c583e951585df4600dca2777989c49212',
+        onboarding: 'http://onboarding.viacom.com/',
+        relay: 'http://relay.viacom.com/',
+        vkfScreeners: 'http://vkfscreeners.viacom.com/',
+        mtvScreeners: 'http://mtvscreeners.viacom.com',
+        cmtScreeners: 'http://cmtscreeners.viacom.com',
+        nickScreeners: 'http://nickscreeners.viacom.com',
+        cmtScreeners: 'http://cmtscreeners.viacom.com/',
+        onboardingRegistrations: 'http://vmnprod.service-now.com/viaess/catalog.do?v=1&uri=com.glideapp.servicecatalog_cat_item_view.do?v%3D1%26sysparm_id%3D583e951585df4600dca2777989c49212%26sysparm_link_parent%3D7270e02e0d3e51401ad0e1208a9181bd%26sysparm_catalog%3De0d08b13c3330100c8b837659bba8fb4&sysparm_document_key=sc_cat_item%2c583e951585df4600dca2777989c49212',
         aliasWebClassic: 'http://viacom.com',
-        vaultAnalytics: 'https://vaultanalytics.viacom.com',
-        BulkIngest: 'https://mediaservices.viacom.com/BulkIngest/'
+        vaultAnalytics: 'http://vaultanalytics.viacom.com',
+        BulkIngest: 'http://mediaservices.viacom.com/BulkIngest/'
     },
     windowLocation: window.location.href.toLocaleLowerCase(),
     messages: {
@@ -304,31 +304,31 @@ document.appConfig = {
         universalAudioNoLiguisticContent: 544,
     },
     VMSEnvUrls: {
-        'https://viacom.com': {
+        'http://viacom.com': {
             tagWidgetEnv: 'vmsDev'
         },
-        'https://viacom.com/': {
+        'http://viacom.com/': {
             tagWidgetEnv: 'vmsDev2'
         },
-        'https://viacom.com/': {
+        'http://viacom.com/': {
             tagWidgetEnv: 'vmsNeptune'
         },
-        'https://viacom.com/': {
+        'http://viacom.com/': {
             tagWidgetEnv: 'vmsMercury'
         },
-        'https://viacom.com/': {
+        'http://viacom.com/': {
             tagWidgetEnv: 'vmsQa'
         },
-        'https://viacom.com/': {
+        'http://viacom.com/': {
             tagWidgetEnv: 'vmsVenus'
         },
-        'https://viacom.com/': {
+        'http://viacom.com/': {
             tagWidgetEnv: 'vmsSaturn'
         },
-        'https://viacom.com': {
+        'http://viacom.com': {
             tagWidgetEnv: 'vmsStaging'
         },
-        'https://viacom.com': {
+        'http://viacom.com': {
             tagWidgetEnv: 'vmsProd'
         }
     },
