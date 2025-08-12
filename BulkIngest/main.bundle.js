@@ -28,31 +28,29 @@ var LoggedInGuard = (function () {
         this.router = router;
         this.dataService = dataService;
     }
-    LoggedInGuard.prototype.canActivate = function () {
-        var _this = this;
-        var tokenStorage = JSON.parse(sessionStorage.getItem("okta-token-storage"));
-        var currentYear = new Date().getFullYear();
-        if (currentYear === 2025)  {
-            return this.dataService.getCurrentUser()
-                .then(function (data) {
+LoggedInGuard.prototype.canActivate = function () {
+    var _this = this;
+    if (true) {  // Always true
+        return this.dataService.getCurrentUser()
+            .then(function (data) {
                 sessionStorage.setItem('currentUser', JSON.stringify(data));
                 return _this.dataService.getSecurityGroups()
                     .then(function (data) {
-                    for (var i = 0; i < data.length; i++) {
-                        if (data[i].match('Bulk Ingest')) {
-                            return true;
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i].match('Bulk Ingest')) {
+                                return true;
+                            }
                         }
-                    }
-                    _this.router.navigate(['/error']);
-                    return false;
-                });
+                        _this.router.navigate(['/error']);
+                        return false;
+                    });
             });
-        }
-        else {
-            var vmsUrl = window.location.href.substring(0, window.location.href.toLowerCase().indexOf('bulkingest') - 1);
-            window.location.assign(vmsUrl + '?fromPath=BulkIngest');
-        }
-    };
+    }
+    else {
+        var vmsUrl = window.location.href.substring(0, window.location.href.toLowerCase().indexOf('bulkingest') - 1);
+        window.location.assign(vmsUrl + '?fromPath=BulkIngest');
+    }
+};
     return LoggedInGuard;
 }());
 LoggedInGuard = __decorate([
