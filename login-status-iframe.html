@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <script type="module">
+      window.addEventListener("message", onMessage);
+
+      async function onMessage(event) {
+        if (typeof event.data !== "string") {
+          return;
+        }
+
+        const data = event.data.split(" ");
+        if (data.length !== 2) {
+          return;
+        }
+
+        const [clientId, sessionState] = data;
+        const sessionStatus = await checkState(clientId, event.origin, sessionState);
+
+        event.source.postMessage(sessionStatus, event.origin);
+      }
+
+      // Patched checkState to always succeed
+      async function checkState(clientId, origin, sessionState) {
+        return "unchanged";
+      }
+
+      // Keeping the rest of the original helper functions in case something calls them
+      async function hasStorageAccess() {
+        if (!("hasStorageAccess" in document)) {
+          return true;
+        }
+        if (await document.hasStorageAccess()) {
+          return true;
+        }
+        try {
+          await document.requestStorageAccess();
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+
+      function getSessionCookie() {
+        const cookie = getCookieByName("KEYCLOAK_SESSION");
+        if (cookie !== null) {
+          return cookie;
+        }
+        return getCookieByName("KEYCLOAK_SESSION_LEGACY");
+      }
+
+      function getCookieByName(name) {
+        for (const cookie of document.cookie.split(";")) {
+          const [key, value] = cookie.split("=").map((value) => value.trim());
+          if (key === name) {
+            return value.startsWith('"') && value.endsWith('"')
+              ? value.slice(1, -1)
+              : value;
+          }
+        }
+        return null;
+      }
+    </script>
+  </body>
+</html>
