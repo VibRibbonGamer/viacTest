@@ -1,0 +1,795 @@
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([[4281], {
+    6906: function(e, t, o) {
+        Promise.resolve().then(o.bind(o, 97592))
+    },
+    49615: function(e, t, o) {
+        "use strict";
+        var r = o(57437)
+          , i = o(32377);
+        t.Z = () => (0,
+        r.jsx)("div", {
+            className: "content-area w-full h-screen text-center align-middle loader flex justify-center",
+            children: (0,
+            r.jsx)(i.Z, {})
+        })
+    },
+    97592: function(e, t, o) {
+        "use strict";
+        o.r(t),
+        o.d(t, {
+            default: function() {
+                return p
+            }
+        });
+        var r = o(57437)
+          , i = o(89873)
+          , n = o(79838)
+          , s = o(11614)
+          , a = o(99376)
+          , c = o(2265)
+          , l = o(7261);
+        o(2648);
+        let u = () => {
+            let e = (0,
+            a.useRouter)()
+              , [t,o] = (0,
+            c.useState)(!1)
+              , [u,d] = (0,
+            c.useState)(!1)
+              , p = (0,
+            i.QB)(e => e.setIsUserRestricted)
+              , [f,h] = (0,
+            c.useState)({
+                password: ""
+            })
+              , [m,g] = (0,
+            c.useState)("")
+              , v = (0,
+            a.useSearchParams)().get("callbackUrl") || "/home"
+              , y = n.e
+              , [w,b] = (0,
+            c.useState)("SIGN IN")
+              , k = async t => {
+                t.preventDefault(),
+                b("CHECKING...");
+                try {
+                    let t = await fetch(y, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        credentials: "include",
+                        body: JSON.stringify({
+                            password: f.password,
+                            path: v
+                        })
+                    });
+                    o(!0),
+                    h({
+                        password: ""
+                    }),
+                    o(!1);
+                    let r = await t.json();
+                    if ((null == r ? void 0 : r.message) === "Authenticated") {
+                        p(r.restricted);
+                        let t = await fetch(y, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            credentials: "include",
+                            body: JSON.stringify({
+                                path: v
+                            })
+                        })
+                          , i = t.status
+                          , n = await t.json();
+                        console.log("status: ", i),
+                        "Authenticated" === n.message ? ((0,
+                        s.setCookie)("AT2", "SET"),
+                        l.Am.success("Welcome to BrandHub!", {
+                            position: "top-right",
+                            className: "toast-font",
+                            autoClose: 1500,
+                            onClose: () => {
+                                window.location.href = v
+                            }
+                        })) : 500 === i ? (console.log("token expired"),
+                        b("SIGN IN"),
+                        l.Am.error("Token expired. Please sign in again.", {
+                            position: "top-right",
+                            className: "toast-font"
+                        })) : (401 === i || "Forbidden" === n.message) && (b("SIGN IN"),
+                        o(!1),
+                        e.push("/signin"),
+                        l.Am.error("Sorry, you don't have access to this content, please sign in again to access the home page.", {
+                            position: "top-right",
+                            className: "toast-font",
+                            autoClose: 3e3
+                        }))
+                    } else
+                        (null == r ? void 0 : r.message) === "Wrong Password" ? (console.log("wrong password"),
+                        b("SIGN IN"),
+                        l.Am.error("Incorrect password. Please try again.", {
+                            position: "top-right",
+                            className: "toast-font",
+                            autoClose: 1500
+                        })) : (401 === r.status || "Forbidden" === r.message) && (b("SIGN IN"),
+                        o(!1),
+                        l.Am.error("Sorry, you don't have access to this content.", {
+                            position: "top-right",
+                            className: "toast-font",
+                            autoClose: 1500,
+                            onClose: () => {
+                                e.push("/signin")
+                            }
+                        }))
+                } catch (e) {
+                    console.error(e),
+                    o(!1),
+                    g(e),
+                    b("SIGN IN")
+                }
+            }
+            ;
+            return (0,
+            r.jsxs)("form", {
+                onSubmit: k,
+                children: [(0,
+                r.jsx)("div", {
+                    className: " bg-darkumbra",
+                    children: (0,
+                    r.jsx)("input", {
+                        required: !0,
+                        type: u ? "text" : "password",
+                        name: "password",
+                        value: f.password,
+                        onChange: e => {
+                            let {name: t, value: o} = e.target;
+                            h({
+                                ...f,
+                                [t]: o
+                            })
+                        }
+                        ,
+                        placeholder: "Password",
+                        className: "".concat("form-control block w-full px-3 py-4 text-[16px] font-normal bg-white text-black bg-white bg-clip-padding rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:outline-none border-b-[3px] focus:border-[#1ad1d3] pt-[19px]")
+                    })
+                }), (0,
+                r.jsxs)("div", {
+                    className: "show-password-group mt-2 flex flex-row gap-2 text-white/50",
+                    children: [(0,
+                    r.jsx)("input", {
+                        type: "checkbox",
+                        name: "show-password",
+                        id: "show-password",
+                        onChange: () => {
+                            !1 === u ? d(!0) : d(!1)
+                        }
+                    }), (0,
+                    r.jsx)("label", {
+                        htmlFor: "show-password",
+                        children: "Show Password"
+                    })]
+                }), (0,
+                r.jsx)("button", {
+                    type: "submit",
+                    onSubmit: k,
+                    style: {
+                        backgroundColor: "".concat("#d2ff00")
+                    },
+                    className: "inline-block glint-btn transition duration-150 ease-in-out align-center mt-4 w-full ".concat("CHECKING..." === w ? "cursor-wait" : "cursor-pointer"),
+                    disabled: t,
+                    children: w
+                })]
+            })
+        }
+        ;
+        var d = o(49615);
+        function p() {
+            let e = (0,
+            i.QI)(e => e.loading)
+              , t = (0,
+            i.QI)(e => e.setLoading)
+              , o = (0,
+            a.useRouter)()
+              , n = (0,
+            i.h3)(e => e.preAuthorized);
+            return (0,
+            c.useEffect)( () => {
+                n ? o.push("/home") : t(!1)
+            }
+            , []),
+            (0,
+            c.useEffect)( () => {
+                (0,
+                s.getCookie)("STZJWT") && (0,
+                s.deleteCookie)("STZJWT")
+            }
+            , []),
+            (0,
+            r.jsx)(r.Fragment, {
+                children: e || n ? (0,
+                r.jsx)(d.Z, {}) : (0,
+                r.jsxs)("div", {
+                    className: "flex flex-row h-screen w-full relative",
+                    children: [(0,
+                    r.jsx)("div", {
+                        className: "background-overlay-dark"
+                    }), (0,
+                    r.jsxs)("video", {
+                        className: "flare",
+                        poster: "/flares/HERO-FLARE-FALLBACK.webp",
+                        loop: !0,
+                        muted: !0,
+                        autoPlay: !0,
+                        playsInline: !0,
+                        children: [(0,
+                        r.jsx)("source", {
+                            src: "/flares/HERO_GLASS_01_FLARE.webm",
+                            type: "video/webm"
+                        }), (0,
+                        r.jsx)("source", {
+                            src: "/flares/HERO_GLASS_01_FLARE.mp4",
+                            type: "video/mp4"
+                        })]
+                    }), (0,
+                    r.jsx)("div", {
+                        className: "container mx-auto px-6 py-12 h-full flex justify-center items-center z-[99]",
+                        children: (0,
+                        r.jsxs)("div", {
+                            className: "w-[600px] bg-black px-8 py-10",
+                            children: [(0,
+                            r.jsx)("img", {
+                                src: "/starz-logo-glint-fnl.svg",
+                                alt: "STARZ",
+                                width: 180,
+                                height: 0
+                            }), (0,
+                            r.jsx)("p", {
+                                className: "mb-2 mt-6",
+                                children: " Please enter the password:"
+                            }), (0,
+                            r.jsx)(u, {})]
+                        })
+                    })]
+                })
+            })
+        }
+    },
+    89873: function(e, t, o) {
+        "use strict";
+        o.d(t, {
+            DO: function() {
+                return f
+            },
+            HC: function() {
+                return g
+            },
+            Hj: function() {
+                return v
+            },
+            QB: function() {
+                return w
+            },
+            QI: function() {
+                return u
+            },
+            SD: function() {
+                return h
+            },
+            VV: function() {
+                return p
+            },
+            Ve: function() {
+                return a
+            },
+            WF: function() {
+                return m
+            },
+            Wk: function() {
+                return s
+            },
+            Y1: function() {
+                return n
+            },
+            ZJ: function() {
+                return l
+            },
+            h3: function() {
+                return y
+            },
+            il: function() {
+                return d
+            },
+            vw: function() {
+                return c
+            }
+        });
+        var r = o(59625)
+          , i = o(89134);
+        let n = (0,
+        r.Ue)()((0,
+        i.tJ)(e => ({
+            selection: "carousel",
+            setSelection: t => e( () => ({
+                selection: t
+            }))
+        }), {
+            name: "view-selection"
+        }));
+        (0,
+        r.Ue)()(e => ({
+            names: [],
+            addValue: t => {
+                e(e => ({
+                    names: [...e.names, {
+                        value: t
+                    }]
+                }))
+            }
+        })),
+        (0,
+        r.Ue)()(e => ({
+            title: "BRAND \nHUB",
+            desc: "Brand Hub is a system where all brand assets that define our company's branding live and are easily accessible.",
+            setTitle: t => e( () => ({
+                title: t
+            })),
+            setDesc: t => e( () => ({
+                desc: t
+            }))
+        }));
+        let s = (0,
+        r.Ue)()(e => ({
+            open: !0,
+            setOpen: t => e( () => ({
+                open: t
+            }))
+        }))
+          , a = (0,
+        r.Ue)()(e => ({
+            buttonState: "/hide.svg",
+            setButtonState: t => e( () => ({
+                buttonState: t
+            }))
+        }))
+          , c = (0,
+        r.Ue)()(e => ({
+            nav: "home",
+            setNav: t => e( () => ({
+                nav: t
+            }))
+        }));
+        (0,
+        r.Ue)()(e => ({
+            active: !1,
+            setActive: t => e( () => ({
+                active: t
+            }))
+        }));
+        let l = (0,
+        r.Ue)()(e => ({
+            video: "",
+            player2: "",
+            player3: "",
+            setVideo: t => e( () => ({
+                video: t
+            })),
+            setPlayer2: t => e( () => ({
+                player2: t
+            })),
+            setPlayer3: t => e( () => ({
+                player3: t
+            }))
+        }))
+          , u = (0,
+        r.Ue)()(e => ({
+            loading: !0,
+            setLoading: t => e( () => ({
+                loading: t
+            }))
+        }))
+          , d = (0,
+        r.Ue)()(e => ({
+            autoPlay: !1,
+            setautoPlay: t => e( () => ({
+                autoPlay: t
+            }))
+        }));
+        (0,
+        r.Ue)()(e => ({
+            indexForLightBox: -1,
+            setIndexForLightBox: t => e( () => ({
+                indexForLightBox: t
+            }))
+        }));
+        let p = (0,
+        r.Ue)()(e => ({
+            active: "blank",
+            setActive: t => e( () => ({
+                active: t
+            }))
+        }))
+          , f = (0,
+        r.Ue)()(e => ({
+            active: 0,
+            setActive: t => e( () => ({
+                active: t
+            }))
+        }))
+          , h = (0,
+        r.Ue)()(e => ({
+            open: !1,
+            setOpen: t => e( () => ({
+                open: t
+            }))
+        }))
+          , m = (0,
+        r.Ue)()(e => ({
+            open: !0,
+            setOpen: t => e( () => ({
+                open: t
+            }))
+        }));
+        (0,
+        r.Ue)()(e => ({
+            running: !0,
+            setRunning: t => e( () => ({
+                running: t
+            }))
+        }));
+        let g = (0,
+        r.Ue)()(e => ({
+            Open: -1,
+            isLast: "false",
+            setOpen: t => e( () => ({
+                Open: t
+            })),
+            handleClose: () => e( () => ({
+                Open: -1
+            })),
+            setLast: t => e( () => ({
+                isLast: t
+            })),
+            hideNav: !1,
+            setHideNav: () => e(e => ({
+                hideNav: !e.hideNav
+            })),
+            isVisible: !1,
+            setIsVisible: () => e(e => ({
+                isVisible: !e.isVisible
+            }))
+        }))
+          , v = (0,
+        r.Ue)()(e => ({
+            data: null,
+            setData: t => e( () => ({
+                data: t
+            })),
+            resetData: () => e( () => ({
+                data: null
+            }))
+        }))
+          , y = (0,
+        r.Ue)()((0,
+        i.tJ)(e => ({
+            preAuthorized: !1,
+            setPreAuthorized: t => e( () => ({
+                preAuthorized: t
+            })),
+            resetPreAuth: () => {
+                e({
+                    preAuthorized: !1
+                })
+            }
+        }), {
+            name: "_saPA"
+        }))
+          , w = (0,
+        r.Ue)()((0,
+        i.tJ)(e => ({
+            isUserRestricted: !1,
+            setIsUserRestricted: t => e( () => ({
+                isUserRestricted: t
+            })),
+            resetRestrictedUser: () => {
+                e({
+                    isUserRestricted: !1
+                })
+            }
+        }), {
+            name: "_saIUR"
+        }))
+    },
+    79838: function(e, t, o) {
+        "use strict";
+        o.d(t, {
+            e: function() {
+                return r
+            }
+        });
+        let r = "https://brand.starz.com/api/auth"
+    },
+    11614: function(e, t, o) {
+        "use strict";
+        var r = this && this.__assign || function() {
+            return (r = Object.assign || function(e) {
+                for (var t, o = 1, r = arguments.length; o < r; o++)
+                    for (var i in t = arguments[o])
+                        Object.prototype.hasOwnProperty.call(t, i) && (e[i] = t[i]);
+                return e
+            }
+            ).apply(this, arguments)
+        }
+          , i = this && this.__rest || function(e, t) {
+            var o = {};
+            for (var r in e)
+                Object.prototype.hasOwnProperty.call(e, r) && 0 > t.indexOf(r) && (o[r] = e[r]);
+            if (null != e && "function" == typeof Object.getOwnPropertySymbols)
+                for (var i = 0, r = Object.getOwnPropertySymbols(e); i < r.length; i++)
+                    0 > t.indexOf(r[i]) && Object.prototype.propertyIsEnumerable.call(e, r[i]) && (o[r[i]] = e[r[i]]);
+            return o
+        }
+        ;
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }),
+        t.hasCookie = t.deleteCookie = t.setCookie = t.getCookie = t.getCookies = void 0;
+        var n = o(77098)
+          , s = function() {
+            return "undefined" != typeof window
+        }
+          , a = function(e) {
+            return !!e && "getAll"in e && "set"in e && "function" == typeof e.getAll && "function" == typeof e.set
+        }
+          , c = function(e) {
+            return !!(null == e ? void 0 : e.req) && "cookies"in e.req && a(null == e ? void 0 : e.req.cookies) || !!(null == e ? void 0 : e.res) && "cookies"in e.res && a(null == e ? void 0 : e.res.cookies) || !!(null == e ? void 0 : e.cookies) && a(e.cookies())
+        }
+          , l = function(e) {
+            var t = {};
+            return e.getAll().forEach(function(e) {
+                var o = e.name
+                  , r = e.value;
+                t[o] = r
+            }),
+            t
+        }
+          , u = function(e) {
+            try {
+                if ("string" == typeof e)
+                    return e;
+                return JSON.stringify(e)
+            } catch (t) {
+                return e
+            }
+        };
+        t.getCookies = function(e) {
+            if (c(e)) {
+                if (null == e ? void 0 : e.req)
+                    return l(e.req.cookies);
+                if (null == e ? void 0 : e.cookies)
+                    return l(e.cookies())
+            }
+            if (e && (t = e.req),
+            !s())
+                return t && t.cookies ? t.cookies : t && t.headers.cookie ? (0,
+                n.parse)(t.headers.cookie) : {};
+            for (var t, o = {}, r = document.cookie ? document.cookie.split("; ") : [], i = 0, a = r.length; i < a; i++) {
+                var u = r[i].split("=")
+                  , d = u.slice(1).join("=");
+                o[u[0]] = d
+            }
+            return o
+        }
+        ,
+        t.getCookie = function(e, o) {
+            var r = (0,
+            t.getCookies)(o)[e];
+            if (void 0 !== r)
+                return r ? r.replace(/(%[0-9A-Z]{2})+/g, decodeURIComponent) : r
+        }
+        ,
+        t.setCookie = function(e, t, o) {
+            if (c(o)) {
+                var a, l, d, p = o.req, f = o.res, h = o.cookies, m = i(o, ["req", "res", "cookies"]), g = r({
+                    name: e,
+                    value: u(t)
+                }, m);
+                p && p.cookies.set(g),
+                f && f.cookies.set(g),
+                h && h().set(g);
+                return
+            }
+            if (o) {
+                var p = o.req
+                  , f = o.res
+                  , v = i(o, ["req", "res"]);
+                l = p,
+                d = f,
+                a = v
+            }
+            var y = (0,
+            n.serialize)(e, u(t), r({
+                path: "/"
+            }, a));
+            if (s())
+                document.cookie = y;
+            else if (d && l) {
+                var w = d.getHeader("Set-Cookie");
+                if (Array.isArray(w) || (w = w ? [String(w)] : []),
+                d.setHeader("Set-Cookie", w.concat(y)),
+                l && l.cookies) {
+                    var b = l.cookies;
+                    "" === t ? delete b[e] : b[e] = u(t)
+                }
+                if (l && l.headers && l.headers.cookie) {
+                    var b = (0,
+                    n.parse)(l.headers.cookie);
+                    "" === t ? delete b[e] : b[e] = u(t),
+                    l.headers.cookie = Object.entries(b).reduce(function(e, t) {
+                        return e.concat("".concat(t[0], "=").concat(t[1], ";"))
+                    }, "")
+                }
+            }
+        }
+        ,
+        t.deleteCookie = function(e, o) {
+            return (0,
+            t.setCookie)(e, "", r(r({}, o), {
+                maxAge: -1
+            }))
+        }
+        ,
+        t.hasCookie = function(e, o) {
+            return !!e && (0,
+            t.getCookies)(o).hasOwnProperty(e)
+        }
+    },
+    77098: function(e, t) {
+        "use strict";
+        t.parse = function(e, t) {
+            if ("string" != typeof e)
+                throw TypeError("argument str must be a string");
+            var o = {}
+              , i = e.length;
+            if (i < 2)
+                return o;
+            var n = t && t.decode || u
+              , s = 0
+              , a = 0
+              , d = 0;
+            do {
+                if (-1 === (a = e.indexOf("=", s)))
+                    break;
+                if (-1 === (d = e.indexOf(";", s)))
+                    d = i;
+                else if (a > d) {
+                    s = e.lastIndexOf(";", a - 1) + 1;
+                    continue
+                }
+                var p = c(e, s, a)
+                  , f = l(e, a, p)
+                  , h = e.slice(p, f);
+                if (!r.call(o, h)) {
+                    var m = c(e, a + 1, d)
+                      , g = l(e, d, m);
+                    34 === e.charCodeAt(m) && 34 === e.charCodeAt(g - 1) && (m++,
+                    g--);
+                    var v = e.slice(m, g);
+                    o[h] = function(e, t) {
+                        try {
+                            return t(e)
+                        } catch (t) {
+                            return e
+                        }
+                    }(v, n)
+                }
+                s = d + 1
+            } while (s < i);
+            return o
+        }
+        ,
+        t.serialize = function(e, t, r) {
+            var c = r && r.encode || encodeURIComponent;
+            if ("function" != typeof c)
+                throw TypeError("option encode is invalid");
+            if (!i.test(e))
+                throw TypeError("argument name is invalid");
+            var l = c(t);
+            if (!n.test(l))
+                throw TypeError("argument val is invalid");
+            var u = e + "=" + l;
+            if (!r)
+                return u;
+            if (null != r.maxAge) {
+                var d = Math.floor(r.maxAge);
+                if (!isFinite(d))
+                    throw TypeError("option maxAge is invalid");
+                u += "; Max-Age=" + d
+            }
+            if (r.domain) {
+                if (!s.test(r.domain))
+                    throw TypeError("option domain is invalid");
+                u += "; Domain=" + r.domain
+            }
+            if (r.path) {
+                if (!a.test(r.path))
+                    throw TypeError("option path is invalid");
+                u += "; Path=" + r.path
+            }
+            if (r.expires) {
+                var p = r.expires;
+                if ("[object Date]" !== o.call(p) || isNaN(p.valueOf()))
+                    throw TypeError("option expires is invalid");
+                u += "; Expires=" + p.toUTCString()
+            }
+            if (r.httpOnly && (u += "; HttpOnly"),
+            r.secure && (u += "; Secure"),
+            r.partitioned && (u += "; Partitioned"),
+            r.priority)
+                switch ("string" == typeof r.priority ? r.priority.toLowerCase() : r.priority) {
+                case "low":
+                    u += "; Priority=Low";
+                    break;
+                case "medium":
+                    u += "; Priority=Medium";
+                    break;
+                case "high":
+                    u += "; Priority=High";
+                    break;
+                default:
+                    throw TypeError("option priority is invalid")
+                }
+            if (r.sameSite)
+                switch ("string" == typeof r.sameSite ? r.sameSite.toLowerCase() : r.sameSite) {
+                case !0:
+                case "strict":
+                    u += "; SameSite=Strict";
+                    break;
+                case "lax":
+                    u += "; SameSite=Lax";
+                    break;
+                case "none":
+                    u += "; SameSite=None";
+                    break;
+                default:
+                    throw TypeError("option sameSite is invalid")
+                }
+            return u
+        }
+        ;
+        var o = Object.prototype.toString
+          , r = Object.prototype.hasOwnProperty
+          , i = /^[!#$%&'*+\-.^_`|~0-9A-Za-z]+$/
+          , n = /^("?)[\u0021\u0023-\u002B\u002D-\u003A\u003C-\u005B\u005D-\u007E]*\1$/
+          , s = /^([.]?[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)([.][a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*$/i
+          , a = /^[\u0020-\u003A\u003D-\u007E]*$/;
+        function c(e, t, o) {
+            do {
+                var r = e.charCodeAt(t);
+                if (32 !== r && 9 !== r)
+                    return t
+            } while (++t < o);
+            return o
+        }
+        function l(e, t, o) {
+            for (; t > o; ) {
+                var r = e.charCodeAt(--t);
+                if (32 !== r && 9 !== r)
+                    return t + 1
+            }
+            return o
+        }
+        function u(e) {
+            return -1 !== e.indexOf("%") ? decodeURIComponent(e) : e
+        }
+    },
+    2648: function() {}
+}, function(e) {
+    e.O(0, [5676, 1299, 1489, 7261, 2377, 2971, 2117, 1744], function() {
+        return e(e.s = 6906)
+    }),
+    _N_E = e.O()
+}
+]);
